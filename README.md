@@ -1,6 +1,6 @@
-### Jahid Howlader
-##### Web Developer | MERN
 ![Web Developer | MERN](https://i.ibb.co/NZD03Hp/jahid-Howlader.png)
+## Jahid Howlader
+#### Web Developer | MERN
 
 Hello, This is Jahid. A passionate web developer. I have enough knowledge of frontend development and have basic knowledge of the backend like RESTful API.
 
