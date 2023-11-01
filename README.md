@@ -7,7 +7,7 @@ I really enjoy learning new technologies. I have solved several web application 
 Throughout my career, I have demonstrated a keen eye for detail, problem-solving abilities, and a commitment to delivering high-quality code. I enjoy working in a collaborative environment, where I can contribute my skills and learn from experienced professionals.
 Thank you for giving me some valuable time.
 
-## Skills:  JAVASCRIPT / REACT / EXPRESS / MongoDB / NEXTJS / HTML / CSS
+#### Skills:  JAVASCRIPT / REACT / EXPRESS / MongoDB / NEXTJS / HTML / CSS
 
 
 
