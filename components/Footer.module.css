@@ -1,0 +1,15 @@
+.footer {
+  border-top: 1px solid var(--rule);
+  padding-block: var(--s-6) var(--s-8);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.inner p {
+  margin: 0;
+}

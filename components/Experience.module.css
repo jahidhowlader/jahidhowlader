@@ -1,0 +1,66 @@
+.role {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-5);
+  padding-block-end: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.company {
+  font-size: var(--step-2);
+  margin: 0;
+}
+
+.period {
+  margin: 0;
+  white-space: nowrap;
+}
+
+.meta {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.product {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.bullets {
+  display: grid;
+  gap: var(--s-3);
+  margin-block-start: var(--s-4);
+  max-width: var(--measure);
+}
+
+.bullet {
+  position: relative;
+  padding-inline-start: var(--s-5);
+  color: var(--ink-muted);
+}
+
+.bullet::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  /* Aligns the rule with the first line's optical centre. */
+  inset-block-start: 0.7em;
+  width: 10px;
+  height: 1px;
+  background: var(--accent-bright);
+}
+
+.link {
+  margin-block-start: var(--s-3);
+}
+
+.link a {
+  color: var(--accent);
+}

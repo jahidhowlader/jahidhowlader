@@ -1,0 +1,79 @@
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--rule);
+}
+
+@supports (backdrop-filter: blur(6px)) {
+  .bar {
+    backdrop-filter: blur(6px);
+  }
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  min-height: 48px;
+}
+
+.back {
+  color: var(--ink-muted);
+  text-decoration: none;
+  /* Keeps the tap target comfortable without changing the type size. */
+  padding-block: var(--s-3);
+}
+
+.back:hover {
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.progress {
+  height: 2px;
+  margin-block-end: -1px;
+  background: var(--accent-bright);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .progress {
+    display: block;
+    animation: progress linear forwards;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Two mono labels don't fit legibly at this width; the back link matters more. */
+  .title {
+    display: none;
+  }
+}

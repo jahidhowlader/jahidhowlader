@@ -1,0 +1,18 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  /* Column gap comes from the separator's own margin, so the separator
+     stays visually bound to the word it follows. */
+  row-gap: var(--s-1);
+  margin: 0;
+}
+
+.item {
+  white-space: nowrap;
+}
+
+.item:not(:last-child)::after {
+  content: "·";
+  margin-inline: 0.5em;
+  color: var(--ink-faint);
+}

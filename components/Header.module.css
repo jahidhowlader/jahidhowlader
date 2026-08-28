@@ -1,0 +1,63 @@
+.header {
+  padding-block: var(--s-5);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-2) var(--s-4);
+}
+
+.name {
+  white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.list {
+  display: flex;
+  /* Three short links fit at 320px — no disclosure menu needed. */
+  gap: clamp(var(--s-3), 3vw, var(--s-5));
+  margin: 0;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+  /* Comfortable touch target without visually enlarging the type. */
+  padding-block: var(--s-3);
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--ink-muted);
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+/* Scrollspy indicator: a soft underline glow rather than a full restyle. */
+.link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: var(--s-2);
+  block-size: 1.5px;
+  background: var(--accent-bright);
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+  transition: transform var(--dur-reveal) var(--ease),
+    opacity var(--dur-reveal) var(--ease);
+}
+
+.link[data-active] {
+  color: var(--accent);
+}
+
+.link[data-active]::after {
+  transform: scaleX(1);
+  opacity: 1;
+}

@@ -1,0 +1,61 @@
+.wrap {
+  display: grid;
+  gap: var(--s-2);
+}
+
+.status {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}
+
+.allUnlocked {
+  margin: 0;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.track {
+  height: 6px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.fill {
+  height: 100%;
+  background: var(--accent-bright);
+  transition: width var(--dur-reveal) var(--ease);
+}
+
+.rewardRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.75rem;
+}
+
+.rewardRow li {
+  padding-inline: 10px;
+  border-inline-start: 1px solid var(--rule);
+  line-height: 1;
+}
+
+.rewardRow li:first-child {
+  padding-inline-start: 0;
+  border-inline-start: none;
+}
+
+.unlocked {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.locked {
+  color: var(--ink-faint);
+}

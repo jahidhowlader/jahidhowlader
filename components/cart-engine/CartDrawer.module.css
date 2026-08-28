@@ -1,0 +1,159 @@
+.dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* dvh accounts for mobile browser chrome (the address bar showing or
+     hiding) — 100vh alone can be taller than the actually-visible viewport
+     on mobile Safari/Chrome. Browsers without dvh support ignore this
+     second declaration and keep the 100% above. */
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  overflow: hidden;
+}
+
+.dialog::backdrop {
+  background: rgb(0 0 0 / 45%);
+}
+
+.panel {
+  /* Mobile: a genuine full-screen panel, not a sheet that hugs its content
+     — inset: 0 plus an explicit height (not max-height) means the panel's
+     size is fixed to the viewport regardless of how many items or rewards
+     are inside it. */
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  background: var(--bg-raised);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  color: var(--ink);
+  box-sizing: border-box;
+}
+
+@media (min-width: 900px) {
+  .panel {
+    inset-block: 0;
+    inset-inline-end: 0;
+    inset-inline-start: auto;
+    /* top: 0 and bottom: 0 already pin this to the full viewport height —
+       an explicit height would conflict with (and win over) inset-block-end. */
+    height: auto;
+    width: min(420px, 92vw);
+    border-inline-start: 1px solid var(--rule);
+  }
+}
+
+.dialog[open] .panel {
+  animation: slide-in-mobile var(--dur-reveal) var(--ease);
+}
+
+@keyframes slide-in-mobile {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 900px) {
+  .dialog[open] .panel {
+    animation-name: slide-in-desktop;
+  }
+
+  @keyframes slide-in-desktop {
+    from {
+      transform: translateX(16px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  flex-shrink: 0;
+  padding: var(--s-4) var(--s-5);
+  /* A full-screen mobile panel can sit under a notch/status bar; this is a
+     no-op (env() resolves to 0) on desktop and non-notched devices. */
+  padding-top: max(var(--s-4), env(safe-area-inset-top));
+  border-bottom: 1px solid var(--rule);
+}
+
+.heading {
+  margin: 0;
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+
+.head .close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-inline-end: calc(var(--s-3) * -1);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.head .close:hover {
+  color: var(--accent);
+}
+
+.body {
+  /* The only scrollable region: min-height: 0 overrides the flex default
+     (auto), which otherwise refuses to shrink this item below its content's
+     natural height — without it, a long item list would grow the whole
+     panel instead of scrolling inside its own space. */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  /* Reaching the top/bottom of this list shouldn't scroll-chain into
+     whatever's behind the (already scroll-locked) drawer. */
+  overscroll-behavior: contain;
+  padding: var(--s-4) var(--s-5);
+}
+
+.footer {
+  flex-shrink: 0;
+  border-top: 1px solid var(--rule);
+  padding: var(--s-4) var(--s-5) var(--s-5);
+  /* The bottom CTA sits above the home indicator on notched phones instead
+     of underneath it. */
+  padding-bottom: max(var(--s-5), env(safe-area-inset-bottom));
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

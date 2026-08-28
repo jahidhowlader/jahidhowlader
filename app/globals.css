@@ -1,0 +1,281 @@
+/* ── Tokens ─────────────────────────────────────────────────────────── */
+
+:root {
+  /* Warm paper */
+  --bg: #faf9f6;
+  --bg-raised: #ffffff;
+  --ink: #171614;
+  --ink-muted: #57544e;
+  --ink-faint: #726d64;
+  --rule: #e4e1da;
+  --accent: #c2410c;
+  --accent-bright: #f97316;
+
+  /* Type */
+  --step--1: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.125rem, 1.05rem + 0.35vw, 1.3125rem);
+  --step-2: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  --step-3: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --step-4: clamp(2.5rem, 1.6rem + 4.2vw, 5rem);
+
+  /* Space */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+  --s-10: 128px;
+  --s-11: 160px;
+
+  /* Layout */
+  --measure: 68ch;
+  --container: 1240px;
+  --gutter: clamp(20px, 5vw, 64px);
+  --label-col: 200px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-hover: 150ms;
+  --dur-reveal: 400ms;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121110;
+    --bg-raised: #1a1917;
+    --ink: #f2f0eb;
+    --ink-muted: #a19c93;
+    --ink-faint: #8b857b;
+    --rule: #2a2825;
+    --accent: #fb923c;
+    --accent-bright: #fdba74;
+
+    color-scheme: dark;
+  }
+}
+
+/* ── Reset ──────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: var(--s-8);
+  /* Root cause of the horizontal shift when the cart drawer opens: a modal
+     <dialog> makes the browser hide the page's own scrollbar while it's
+     open (that's how it blocks background scrolling), which changes the
+     viewport's content width and shifts everything sideways by a
+     scrollbar's width, then snaps back on close. Reserving the gutter
+     permanently means that width never changes, whether the scrollbar is
+     actually rendered or not. */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: var(--step-0);
+  line-height: 1.65;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* ── Base type ──────────────────────────────────────────────────────── */
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: var(--step-4);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: var(--step-3);
+}
+
+h3 {
+  font-size: var(--step-2);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.25em;
+  transition: color var(--dur-hover) ease-out,
+    text-decoration-color var(--dur-hover) ease-out;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent-bright);
+}
+
+strong {
+  font-weight: 500;
+}
+
+/* ── Shared primitives ──────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Mono metadata label — the spec-sheet voice */
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.measure {
+  max-width: var(--measure);
+}
+
+.lead {
+  font-size: var(--step-1);
+  color: var(--ink-muted);
+  max-width: 58ch;
+}
+
+/* ── Focus ──────────────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Reveal on scroll (progressive enhancement) ─────────────────────── */
+
+/* Hidden only where scripting can actually reveal it again. Without JS —
+   or in browsers without `scripting` support — content renders immediately. */
+@media (scripting: enabled) {
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px) scale(0.99);
+  }
+
+  [data-reveal-off] [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    transition: opacity var(--dur-reveal) var(--ease),
+      transform var(--dur-reveal) var(--ease);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ── Skip link ──────────────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--gutter);
+  inset-block-start: var(--s-3);
+  z-index: 10;
+  padding: var(--s-2) var(--s-3);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  text-decoration: none;
+  transform: translateY(-200%);
+}
+
+/* :focus rather than :focus-visible — a skip link must reveal itself for any
+   focus, including focus moved programmatically by assistive tech. */
+.skip-link:focus {
+  transform: none;
+}
+
+/* ── Print ──────────────────────────────────────────────────────────── */
+
+@media print {
+  /* Never let a scroll-triggered reveal withhold content from paper. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,17 @@
+.thumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  color: var(--ink-muted);
+}
+
+.thumb svg {
+  width: 60%;
+  height: 60%;
+}

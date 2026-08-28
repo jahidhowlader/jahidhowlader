@@ -1,0 +1,53 @@
+.control {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+/* Two chained classes give this selector (0,2,0) specificity — enough to
+   outweigh a single class-or-tag rule from an unpredictable host stylesheet
+   (see the style-isolation section below). */
+.control .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.control .button:hover:not(:disabled) {
+  border-color: var(--accent-bright);
+  color: var(--accent);
+}
+
+.control .button:disabled {
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.quantity {
+  min-width: 2ch;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,173 @@
+.controls {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--s-4);
+  margin: 0;
+  margin-block-start: var(--s-3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+  width: 100%;
+  /* Fills the rest of the (grid-stretched) card, so the button below can be pinned to the bottom regardless of how much variant content sits above it. */
+  flex: 1;
+}
+
+.details {
+  display: grid;
+  gap: var(--s-2);
+  width: 100%;
+}
+
+.name {
+  margin: 0;
+  font-size: var(--step--1);
+}
+
+.price {
+  margin: 0;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}
+
+.variantGroups {
+  display: grid;
+  gap: var(--s-2);
+  margin-block-start: var(--s-1);
+}
+
+.variantGroup {
+  display: grid;
+  gap: 6px;
+}
+
+.variantLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.variantOptions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.variantOption {
+  min-height: 32px;
+  padding-inline: var(--s-2);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.variantOption:hover {
+  border-color: var(--accent-bright);
+  color: var(--accent);
+}
+
+.variantSelected {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.variantSelected:hover {
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.addButton {
+  min-height: 44px;
+  width: 100%;
+  /* Always sits at the bottom of the card, regardless of how much variant
+     content the card above it has — .cardBody is the flex column that
+     stretches to the grid-equalized card height, so this auto margin has
+     real space to push into. */
+  margin-block-start: auto;
+  padding-inline: var(--s-3);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.addButton:hover {
+  border-color: var(--accent-bright);
+  color: var(--accent);
+}
+
+.demoRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-5);
+  padding-block-start: var(--s-4);
+  border-top: 1px solid var(--rule);
+}
+
+.failureToggle {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  min-height: 44px;
+  color: var(--ink-muted);
+  font-size: var(--step--1);
+  cursor: pointer;
+}
+
+.failureToggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-bright);
+}
+
+.resetButton {
+  min-height: 44px;
+  padding-inline: var(--s-4);
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+  cursor: pointer;
+}
+
+.resetButton:hover {
+  color: var(--accent);
+  border-color: var(--accent-bright);
+}

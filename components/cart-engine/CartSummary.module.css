@@ -1,0 +1,66 @@
+.summary {
+  display: grid;
+  gap: var(--s-4);
+}
+
+.totals {
+  display: grid;
+  gap: var(--s-2);
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.row dt,
+.row dd {
+  margin: 0;
+}
+
+.row dd {
+  font-variant-numeric: tabular-nums;
+}
+
+.discount {
+  color: var(--accent);
+}
+
+.free {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.totalRow {
+  padding-block-start: var(--s-3);
+  border-top: 1px solid var(--rule);
+  font-size: var(--step-1);
+}
+
+.checkout {
+  min-height: 48px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bg);
+  cursor: pointer;
+}
+
+.checkout:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkoutNote {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  text-align: center;
+}

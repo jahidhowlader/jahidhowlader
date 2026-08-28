@@ -1,0 +1,53 @@
+.hero {
+  /* Short of full height, so the next section's rule sits inside the fold. */
+  min-height: 88svh;
+  display: flex;
+  align-items: center;
+  padding-block: var(--s-8) var(--s-9);
+}
+
+.inner {
+  display: grid;
+  gap: var(--s-7);
+}
+
+.copy {
+  display: grid;
+  gap: var(--s-5);
+  min-width: 0;
+}
+
+.heading {
+  max-width: 22ch;
+  margin-block-start: var(--s-2);
+}
+
+.support {
+  margin-block-start: var(--s-2);
+}
+
+.stack {
+  margin-block-start: var(--s-4);
+}
+
+.contact {
+  margin: 0;
+}
+
+.email {
+  color: var(--accent);
+  text-decoration-color: var(--accent-bright);
+}
+
+@media (min-width: 900px) {
+  .heading {
+    max-width: 26ch;
+  }
+}
+
+@media (min-width: 1000px) {
+  .inner {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: center;
+  }
+}

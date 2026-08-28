@@ -1,0 +1,31 @@
+.section {
+  border-top: 1px solid var(--rule);
+  padding-block: clamp(var(--s-8), 11vh, var(--s-11));
+}
+
+.inner {
+  display: grid;
+  gap: var(--s-6);
+}
+
+.heading {
+  margin: 0;
+}
+
+.content {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: var(--label-col) minmax(0, 1fr);
+    gap: clamp(var(--s-6), 6vw, var(--s-9));
+  }
+
+  .heading {
+    /* Hold the label at the top of its column as content grows. */
+    position: sticky;
+    top: var(--s-6);
+    align-self: start;
+  }
+}

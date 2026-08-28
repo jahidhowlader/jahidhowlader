@@ -1,0 +1,203 @@
+.wrap {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 30rem;
+}
+
+/* Entrance: the panel settles in slightly after the text-critical LCP
+   content has already painted. Runs via CSS only — no scroll JS needed. */
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes token-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  border-radius: 14px;
+  border: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--bg-raised) 88%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 1px 2px rgba(23, 22, 20, 0.04), 0 24px 48px -20px rgba(23, 22, 20, 0.22);
+  overflow: hidden;
+  animation: card-in 700ms var(--ease) both;
+  animation-delay: 120ms;
+}
+
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  border-block-end: 1px solid var(--rule);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rule);
+}
+
+.filename {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.body {
+  padding: var(--s-4) var(--s-5);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  line-height: 1.9;
+}
+
+.lines {
+  counter-reset: line;
+  display: grid;
+}
+
+.lines > li {
+  counter-increment: line;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ink);
+}
+
+.lines > li::before {
+  content: counter(line);
+  display: inline-block;
+  width: 1.5em;
+  margin-inline-end: var(--s-3);
+  color: var(--ink-faint);
+  opacity: 0.6;
+  text-align: right;
+}
+
+.indent {
+  padding-inline-start: 1.5em;
+}
+
+.kw {
+  color: var(--accent);
+}
+
+.str {
+  color: var(--code-string);
+}
+
+.punct {
+  color: var(--ink-faint);
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.9em;
+  margin-inline-start: 2px;
+  vertical-align: -0.15em;
+  background: var(--accent-bright);
+  animation: blink 1s step-end infinite;
+}
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-2) var(--s-4);
+  border-block-start: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--rule) 35%, transparent);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+.branch {
+  color: var(--accent);
+}
+
+.floatToken {
+  position: absolute;
+  z-index: 0;
+  inset-inline-start: var(--fx);
+  inset-block-start: var(--fy);
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--ink-faint);
+  opacity: 0.5;
+  animation: token-in 600ms var(--ease) both, drift 6s ease-in-out infinite;
+  animation-delay: 0ms, calc(700ms + var(--fd));
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .floatToken {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Syntax colors: a muted, warm-palette-consistent green for strings,
+   distinct from --accent (used for keywords) and --ink-faint (punctuation). */
+:root {
+  --code-string: #6a8a4f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --code-string: #9bc27c;
+  }
+}

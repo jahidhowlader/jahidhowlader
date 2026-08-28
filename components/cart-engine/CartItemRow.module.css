@@ -1,0 +1,126 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+  padding-block: var(--s-4);
+  transition: opacity 150ms var(--ease);
+}
+
+.row[aria-busy="true"] {
+  opacity: 0.65;
+}
+
+.row + .row {
+  border-top: 1px solid var(--rule);
+}
+
+.thumb {
+  flex-shrink: 0;
+}
+
+.info {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin: 0;
+}
+
+.variants {
+  margin: 2px 0 0;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.price {
+  margin: 2px 0 0;
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}
+
+.strike {
+  text-decoration: line-through;
+  color: var(--ink-faint);
+}
+
+.giftTag {
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 6px;
+  height: 18px;
+  border: 1px solid var(--accent-bright);
+  border-radius: 999px;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+}
+
+.freeLabel {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.giftNote {
+  margin: 0;
+  font-size: var(--step--1);
+  color: var(--ink-faint);
+}
+
+.lineTotal {
+  margin: 0;
+  min-width: 4ch;
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Two chained classes, same reasoning as QuantityControl's button rule. */
+.row .remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: var(--s-2);
+  background: none;
+  border: none;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: var(--step--1);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.row .remove:hover {
+  color: var(--accent);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
