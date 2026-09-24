@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * Reveals `[data-reveal]` elements once as they enter the viewport.
@@ -10,8 +11,15 @@ import { useEffect } from "react";
  * Content starts hidden, so every path that could withhold the reveal has to
  * fail open: while a document is hidden the renderer suspends frames, and
  * IntersectionObserver callbacks are never delivered.
+ *
+ * The App Router swaps `<page>` content client-side without remounting this
+ * component, so the effect has to re-run on every route change (including
+ * browser back/forward) — otherwise elements that mount after the first
+ * pathname never get observed and stay at their hidden starting opacity.
  */
 export function Reveal() {
+  const pathname = usePathname();
+
   useEffect(() => {
     const targets = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]"),
@@ -61,7 +69,7 @@ export function Reveal() {
       observer.disconnect();
       document.removeEventListener("visibilitychange", onHidden);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
