@@ -45,4 +45,10 @@ export const social: Link[] = [
     external: true,
   },
   { label: "GitHub", href: "https://github.com/jahidhowlader", external: true },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/8801625405959",
+    external: true,
+    ariaLabel: "Chat on WhatsApp",
+  },
 ];

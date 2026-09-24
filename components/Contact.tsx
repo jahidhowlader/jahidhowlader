@@ -20,7 +20,12 @@ export function Contact() {
           <ul className={styles.social}>
             {social.map((link) => (
               <li key={link.href}>
-                <a href={link.href} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.ariaLabel}
+                >
                   {link.label}
                   <span aria-hidden="true"> ↗</span>
                 </a>

@@ -3,6 +3,8 @@ export type Link = {
   href: string;
   /** Renders an outbound indicator and opens in a new tab. */
   external?: boolean;
+  /** Overrides the accessible name when the visible label isn't descriptive enough alone. */
+  ariaLabel?: string;
 };
 
 export type Project = {
